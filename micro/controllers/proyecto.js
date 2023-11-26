@@ -32,6 +32,18 @@ const createProyecto = async (req = request, res = response) => {
     }
 };
 
+const getProyecto = async (req = request, res = response) => {
+    console.log("Peticion Get")
+    try {
+        const proyecto = await Proyecto.find();
+        return res.status(200).json(proyecto);
+    } catch (error) {
+        console.error('Error al obtener el proyecto:', error);
+        return res.status(500).json({ msj: 'Error interno del servidor' });
+    }
+};
+
 module.exports = {
-    createProyecto
+    createProyecto,
+    getProyecto
 };
